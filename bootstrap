@@ -5,7 +5,7 @@ cd
 rm -rf dotfiles/ .config/nvim/ .config/ranger/ .ctags.d/
 rm -rf .tmux.conf .gitignore_global
 
- Clone dotfiles repo.
+# Clone dotfiles repo.
 #git clone --quiet https://github.com/mauroporras/dotfiles.git
 git clone --quiet https://github.com/yefriddavid/dotfiles.git
 
