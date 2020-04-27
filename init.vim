@@ -159,3 +159,15 @@ let g:fzf_action = {
 \ 'ctrl-s': 'split',
 \ 'ctrl-v': 'vsplit'
 \}
+
+let @a = '0'
+
+
+set nowrap
+
+
+highlight dave ctermbg=green ctermfg=red
+"highlight TabLine ctermbg=gray ctermfg=black
+hi link EasyMotionTarget2First dave
+hi link EasyMotionTarget2Second dave
+"hi link EasyMotionTarget2third Visual
