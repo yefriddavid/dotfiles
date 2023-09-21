@@ -1,9 +1,14 @@
 ansible-desktop:/mnt/InfinityHome/.ansible-desktop
 aquiles:/mnt/Aquiles
+command-toolbar:/mnt/Zeus/Workspace/go/src/github.com/yefriddavid/command-toolbar
 dotfiles:/mnt/InfinityHome/dotfiles
 InfinityHome:/mnt/InfinityHome
 sys_gl:/mnt/Zeus/Sys
+traze-api:/mnt/Zeus/Workspace/traze/sources/traze-api
+traze:/mnt/Zeus/Workspace/traze
 tzmobile:/mnt/Zeus/Workspace/traze/sources/tzmobile
+tzweb-api:/mnt/Zeus/Workspace/traze/sources/tzweb-api
+tzweb-app:/mnt/Zeus/Workspace/traze/sources/tzweb-app
 wd_dv:/mnt/Zeus/Workspace/dave
 workspace:/mnt/Zeus/Workspace
 ws_dv:/mnt/Zeus/Workspace/dave
