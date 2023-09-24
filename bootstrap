@@ -2,30 +2,30 @@
 
 # Remove old config dirs and files.
 #cd
-echo 'Remove old config dirs and files...'
-rm -rf dotfiles/
+#echo 'Remove old config dirs and files...'
+#rm -rf dotfiles/
 rm -rf ~/.config/nvim/ ~/.config/ranger/ ~/.ctags.d/
 rm -rf ~/.tmux.conf ~/.gitignore_global
 
 # Clone dotfiles repo.
-echo 'Clone dotfiles repo...'
-git clone --quiet https://github.com/yefriddavid/dotfiles.git
+#echo 'Clone dotfiles repo...'
+#git clone --quiet https://github.com/yefriddavid/dotfiles.git
 
 # Create new symlinks.
-echo 'Create new symlinks...'
+#echo 'Create new symlinks...'
 mkdir -p ~/.config/nvim/
-ln -s $(pwd)/dotfiles/init.vim ~/.config/nvim/init.vim
+ln -s $(pwd)/.dotfiles/init.vim ~/.config/nvim/init.vim
 mkdir -p ~/.config/ranger/
-ln -s $(pwd)/dotfiles/rc.conf ~/.config/ranger/rc.conf
+ln -s $(pwd)/.dotfiles/rc.conf ~/.config/ranger/rc.conf
 mkdir -p ~/.ctags.d/
-ln -s $(pwd)/dotfiles/general.ctags ~/.ctags.d/general.ctags
+ln -s $(pwd)/.dotfiles/general.ctags ~/.ctags.d/general.ctags
 
-ln -s $(pwd)/dotfiles/tmux.conf ~/.tmux.conf
-ln -s $(pwd)/dotfiles/gitignore_global ~/.gitignore_global
+ln -s $(pwd)/.dotfiles/tmux.conf ~/.tmux.conf
+ln -s $(pwd)/.dotfiles/gitignore_global ~/.gitignore_global
 
 # Configure Git.
-dotfiles/git-config
+.dotfiles/git-config
 
 # Start Neovim.
-echo 'Starting Neovim to install plugins...'
-nvim
+#echo 'Starting Neovim to install plugins...'
+#nvim
