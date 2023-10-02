@@ -22,6 +22,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
+Plug 'mhartington/formatter.nvim'
+
 " Fzf.
 " Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -108,6 +110,9 @@ nnoremap <Leader>zm :Marks<CR>
 nnoremap <Leader>zt :Tags<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>fq :q!<CR>
+" Format
+nnoremap <leader>f :Format<CR>
+nnoremap <leader>F :FormatWrite<CR>
 " Terminal.
 tnoremap <C-w>h <C-\><C-n><C-w>h
 tnoremap <C-w>j <C-\><C-n><C-w>j
