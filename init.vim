@@ -23,6 +23,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'mhartington/formatter.nvim'
+Plug 'unblevable/quick-scope'
 
 " Fzf.
 " Plug '/usr/local/opt/fzf'
@@ -30,10 +31,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 " Snippets.
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
 
 " Status bar
 Plug 'neovim/nvim-lspconfig'
@@ -42,7 +42,7 @@ Plug 'SmiteshP/nvim-navic'
 " status bar
 "Plug 'liuchengxu/vista.vim'
 "next is good
-"Plug 'liuchengxu/eleline.vim' 
+"Plug 'liuchengxu/eleline.vim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'preservim/tagbar'
 "Plug 'hushicai/tagbar-javascript.vim'
@@ -79,10 +79,11 @@ nnoremap <C-n> :tabnext<CR>
 nnoremap <C-p> :tabprevious<CR>
 nnoremap <Leader>a :Ag<Space>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>g :YcmCompleter GoTo<CR>
-nnoremap <Leader>Gr :YcmCompleter RefactorRename<Space>
+nmap <Leader>g <Plug>(coc-definition)
+nmap <Leader>Gr <Plug>(coc-rename)
 nnoremap <Leader>n :cnext<CR>
 nnoremap <Leader>p :cprevious<CR>
+nnoremap <Leader>sp :echo expand('%:p')<CR>
 nnoremap <Leader>o :Files<CR>
 nnoremap <Leader>q <C-w>q
 nnoremap <Leader>r :RangerEdit<CR>
@@ -110,6 +111,9 @@ nnoremap <Leader>zm :Marks<CR>
 nnoremap <Leader>zt :Tags<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>fq :q!<CR>
+"nnoremap <Leader>* :test<CR>
+"nmap <leader>z <plug>(QuickScopeToggle)
+
 " Format
 nnoremap <leader>f :Format<CR>
 nnoremap <leader>F :FormatWrite<CR>
@@ -120,8 +124,8 @@ tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
 
 " Mark Current Line
-nnoremap <Leader>ml ml:execute 'match Search /\%'.line('.').'l/'<CR> 
-"nnoremap <silent> <Leader>m ml:execute 'match Search /\%'.line('.').'l/'<CR> 
+nnoremap <Leader>ml ml:execute 'match Search /\%'.line('.').'l/'<CR>
+"nnoremap <silent> <Leader>m ml:execute 'match Search /\%'.line('.').'l/'<CR>
 "mark current line with color
 
 "Enable mouse, sometimes it's useful.
@@ -178,15 +182,27 @@ let g:javascript_plugin_flow=1
 " JSX.
 let g:jsx_ext_required=0
 
-" Make YouCompleteMe compatible with UltiSnips (using supertab).
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" coc.nvim - Tab to navigate completion, Enter to confirm.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
-" Better key bindings for UltiSnipsExpandTrigger.
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" coc.nvim - extra navigation keymaps.
+nmap <silent> <Leader>gr <Plug>(coc-references)
+nmap <silent> K :call CocActionAsync('doHover')<CR>
+
+" UltiSnips triggers (coc handles Tab for completion).
+let g:UltiSnipsExpandTrigger = "<C-j>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
 " Fzf.
 let g:fzf_action = {
@@ -258,11 +274,21 @@ let @v = "zzfFhvf\"d\<Esc>n" "Remove silkscreen
 
 "set listchars=tab:▷▷⋮,space:␣
 set listchars=eol:⏎,tab:▷▷⋮,trail:~,extends:>,precedes:<,nbsp:⎵,space:␣
+"set so=999 "center cursor
 "set listchars=eol:⏎,tab:▷▷⋮,trail:␠,nbsp:⎵,space:␣
 "set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:␣
 "set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " set listchars+=space:␣
 noremap <Leader><Tab><Tab> :set invlist<CR>
 noremap <Leader><Tab><Tab><Tab> :set nolist<CR>
+
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+"permite marcar todas las palabras sin mover el cursor
+nnoremap * *``
+"nnoremap # #``
+
+
 
 
