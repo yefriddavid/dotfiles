@@ -4,7 +4,7 @@
 #cd
 #echo 'Remove old config dirs and files...'
 #rm -rf dotfiles/
-rm -rf ~/.config/nvim/ ~/.config/ranger/ ~/.ctags.d/
+rm -rf ~/.config/nvim ~/.config/ranger/ ~/.ctags.d/
 rm -rf ~/.tmux.conf ~/.gitignore_global
 
 # Clone dotfiles repo.
@@ -13,8 +13,8 @@ rm -rf ~/.tmux.conf ~/.gitignore_global
 
 # Create new symlinks.
 #echo 'Create new symlinks...'
-mkdir -p ~/.config/nvim/
-ln -s $(pwd)/.dotfiles/init.vim ~/.config/nvim/init.vim
+mkdir -p ~/.config/
+ln -s $(pwd)/.dotfiles/nvim ~/.config/nvim
 mkdir -p ~/.config/ranger/
 ln -s $(pwd)/.dotfiles/rc.conf ~/.config/ranger/rc.conf
 mkdir -p ~/.ctags.d/
