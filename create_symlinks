@@ -9,6 +9,7 @@ mkdir -p ~/.config/nvim/
 ln -s $(pwd)/dotfiles/init.vim ~/.config/nvim/init.vim
 mkdir -p ~/.config/ranger/
 ln -s $(pwd)/dotfiles/rc.conf ~/.config/ranger/rc.conf
+ln -s $(pwd)/dotfiles/scope.sh ~/.config/ranger/scope.sh
 mkdir -p ~/.ctags.d/
 ln -s $(pwd)/dotfiles/general.ctags ~/.ctags.d/general.ctags
 
