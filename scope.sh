@@ -105,7 +105,7 @@ handle_extension() {
 
         ## JavaScript / ES Modules
         js|mjs|cjs)
-            batcat --color=always --style=numbers,header --theme="TwoDark" \
+            batcat --color=always --style=plain --theme="Dracula" \
                 --language=javascript -- "${FILE_PATH}" && exit 5
             pygmentize -f terminal256 -O "style=${PYGMENTIZE_STYLE}" \
                 -l javascript -- "${FILE_PATH}" && exit 5
@@ -113,13 +113,13 @@ handle_extension() {
 
         ## SCSS / SASS / CSS
         scss|sass)
-            batcat --color=always --style=numbers,header --theme="TwoDark" \
+            batcat --color=always --style=plain --theme="Dracula" \
                 --language=scss -- "${FILE_PATH}" && exit 5
             pygmentize -f terminal256 -O "style=${PYGMENTIZE_STYLE}" \
                 -l scss -- "${FILE_PATH}" && exit 5
             exit 2;;
         css)
-            batcat --color=always --style=numbers,header --theme="TwoDark" \
+            batcat --color=always --style=plain --theme="Dracula" \
                 --language=css -- "${FILE_PATH}" && exit 5
             pygmentize -f terminal256 -O "style=${PYGMENTIZE_STYLE}" \
                 -l css -- "${FILE_PATH}" && exit 5
@@ -327,8 +327,8 @@ handle_mime() {
             env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
                 --out-format="${highlight_format}" \
                 --force -- "${FILE_PATH}" && exit 5
-            env COLORTERM=8bit batcat --color=always --style=numbers,header \
-                --theme="TwoDark" -- "${FILE_PATH}" && exit 5
+            env COLORTERM=8bit batcat --color=always --style=plain \
+                --theme="Dracula" -- "${FILE_PATH}" && exit 5
             pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
                 -- "${FILE_PATH}" && exit 5
             exit 2;;
