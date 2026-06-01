@@ -263,7 +263,79 @@ require("lazy").setup({
   },
 
   -- Navic breadcrumbs (used by lspconfig on_attach)
-  "SmiteshP/nvim-navic",
+  {
+    "SmiteshP/nvim-navic",
+    config = function()
+      require("nvim-navic").setup({
+        separator = "  >  ",
+        icons = {
+          File          = "",  Module        = "",  Namespace     = "",
+          Package       = "",  Class         = "",  Method        = "",
+          Property      = "",  Field         = "",  Constructor   = "",
+          Enum          = "",  Interface     = "",  Function      = "",
+          Variable      = "",  Constant      = "",  String        = "",
+          Number        = "",  Boolean       = "",  Array         = "",
+          Object        = "",  Key           = "",  Null          = "",
+          EnumMember    = "",  Struct        = "",  Event         = "",
+          Operator      = "",  TypeParameter = "",
+        },
+      })
+    end,
+  },
+
+  -- ── Statusline ────────────────────────────────────────────────────────────
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      local navic = require("nvim-navic")
+
+      require("lualine").setup({
+        options = {
+          theme            = "auto",
+          globalstatus     = true,
+          section_separators    = { left = "", right = "" },
+          component_separators = { left = "│", right = "│" },
+        },
+
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = {
+            { "branch", icon = "" },
+            { "diff",   symbols = { added = " ", modified = "~", removed = " " } },
+          },
+          lualine_c = {
+            { "filename", path = 1, symbols = { modified = "●", readonly = "", unnamed = "[?]" } },
+          },
+          lualine_x = {
+            {
+              "diagnostics",
+              sources = { "nvim_lsp" },
+              symbols = { error = " ", warn = " ", info = " ", hint = " " },
+            },
+            "filetype",
+          },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
+        },
+
+        -- Winbar superior: breadcrumbs LSP (solo cuando hay servidor adjunto)
+        winbar = {
+          lualine_c = {
+            {
+              function() return navic.get_location() end,
+              cond = function() return navic.is_available() end,
+            },
+          },
+        },
+        inactive_winbar = {
+          lualine_c = {
+            { "filename", path = 1 },
+          },
+        },
+      })
+    end,
+  },
 
   -- OpenSCAD syntax
   "sirtaj/vim-openscad",
